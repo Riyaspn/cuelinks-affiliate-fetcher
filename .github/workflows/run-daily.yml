@@ -23,5 +23,5 @@ jobs:
 
       - name: Run fetch script
         run: |
-          main.py
+          python main.py
           
