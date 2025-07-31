@@ -1,6 +1,10 @@
+
+import os
 import requests
 
-API_KEY = "YOUR_CUELINKS_API_KEY"
+API_KEY = os.getenv("CUELINKS_API_KEY")
+
+
 
 def fetch_campaigns():
     url = "https://api.cuelinks.com/v2/campaigns"
