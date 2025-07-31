@@ -23,4 +23,5 @@ jobs:
 
       - name: Run fetch script
         run: |
-          python fetch_software_campaigns.py
+          main.py
+          
