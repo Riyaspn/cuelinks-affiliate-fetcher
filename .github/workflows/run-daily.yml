@@ -1,12 +1,10 @@
-name: Run Cuelinks Campaign Fetcher Daily
+name: Manual Cuelinks Campaign Fetch
 
 on:
-  schedule:
-    - cron: "0 5 * * *"  # Every day at 5:00 AM UTC
-  workflow_dispatch:      # Manual trigger button
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
 
 jobs:
-  run-script:
+  fetch_campaigns:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,12 +14,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: 3.10
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-      - name: Run script
-        run: python main.py
-        env:
-          API_KEY: ${{ secrets.CUELINKS_API_KEY }}
+      - name: Run fetch script
+        run: |
+          python fetch_software_campaigns.py
